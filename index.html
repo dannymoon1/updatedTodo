@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Modern Todo Card v2</title>
+       <link rel="stylesheet" href="style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  </head>
+  <body>
+    <div id="root">
+      <article class="todo-card priority-high" data-testid="test-todo-card">
+        <!-- Priority Left Accent -->
+        <div class="priority-indicator" data-testid="test-todo-priority-indicator"></div>
+
+        <!-- VIEW MODE CONTENT -->
+        <div class="view-mode-only">
+          <div class="todo-header">
+            <div class="todo-title-group">
+              <label class="checkbox-container">
+                <input type="checkbox" class="todo-checkbox" data-testid="test-todo-complete-toggle" aria-label="Mark task as complete">
+              </label>
+              <h2 class="todo-title" data-testid="test-todo-title">Design System Audit</h2>
+            </div>
+            <span class="badge badge-priority-high" data-testid="test-todo-priority" aria-label="Priority: High">High</span>
+          </div>
+
+          <div id="collapsible-section-1" class="collapsible-container" data-testid="test-todo-collapsible-section">
+            <p class="todo-description" data-testid="test-todo-description">
+              Review the current component library for consistency, accessibility, and performance bottlenecks. Document findings in the wiki and prepare a report for the engineering leadership team. The audit should cover color contrast, keyboard navigation, and screen reader compatibility across all major browsers.
+            </p>
+          </div>
+          <button class="expand-toggle" data-testid="test-todo-expand-toggle" aria-expanded="false" aria-controls="collapsible-section-1">Show more</button>
+
+          <div class="todo-meta">
+            <div class="status-control-container">
+              <label for="status-select-1" class="view-mode-only">Status:</label>
+              <select id="status-select-1" class="select-status" data-testid="test-todo-status-control" aria-label="Change status">
+                <option value="Pending">Pending</option>
+                <option value="In Progress" selected>In Progress</option>
+                <option value="Done">Done</option>
+              </select>
+              <span class="view-mode-only" data-testid="test-todo-status" style="display:none">In Progress</span>
+            </div>
+            <div class="meta-item">
+              <time class="due-date" datetime="2026-04-18T10:00:00" data-testid="test-todo-due-date">Due Apr 18, 2026</time>
+            </div>
+            <div class="meta-item">
+              <div class="overdue-indicator" data-testid="test-todo-overdue-indicator">
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+                Overdue
+              </div>
+              <time class="time-remaining" data-testid="test-todo-time-remaining" aria-live="polite">Calculating...</time>
+            </div>
+          </div>
+
+          <ul class="todo-tags" data-testid="test-todo-tags" role="list">
+            <li class="tag" data-testid="test-todo-tag-work">Work</li>
+            <li class="tag" data-testid="test-todo-tag-urgent">Urgent</li>
+            <li class="tag">Design</li>
+          </ul>
+        </div>
+
+        <!-- EDIT MODE CONTENT -->
+        <div class="edit-mode-only">
+          <form class="edit-form" data-testid="test-todo-edit-form">
+            <div class="form-group">
+              <label for="edit-title">Task Title</label>
+              <input type="text" id="edit-title" class="input-field" data-testid="test-todo-edit-title-input" value="Design System Audit">
+            </div>
+            <div class="form-group">
+              <label for="edit-desc">Description</label>
+              <textarea id="edit-desc" class="input-field" data-testid="test-todo-edit-description-input">Review the current component library for consistency, accessibility, and performance bottlenecks. Document findings in the wiki and prepare a report for the engineering leadership team.</textarea>
+            </div>
+            <div class="form-group">
+              <label for="edit-priority">Priority</label>
+              <select id="edit-priority" class="input-field" data-testid="test-todo-edit-priority-select">
+                <option value="Low">Low</option>
+                <option value="Medium">Medium</option>
+                <option value="High" selected>High</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="edit-due">Due Date</label>
+              <input type="datetime-local" id="edit-due" class="input-field" data-testid="test-todo-edit-due-date-input" value="2026-04-18T10:00">
+            </div>
+          </form>
+        </div>
+
+        <!-- ACTIONS -->
+        <div class="todo-actions">
+          <div class="action-buttons view-mode-only">
+            <button class="btn btn-edit" data-testid="test-todo-edit-button" aria-label="Edit task">
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"/><path d="m15 5 4 4"/></svg>
+            </button>
+            <button class="btn btn-delete" data-testid="test-todo-delete-button" aria-label="Delete task">
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18"/><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"/><path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/><line x1="10" x2="10" y1="11" y2="17"/><line x1="14" x2="14" y1="11" y2="17"/></svg>
+            </button>
+          </div>
+          <div class="action-buttons edit-mode-only">
+            <button class="btn" data-testid="test-todo-cancel-button">Cancel</button>
+            <button class="btn btn-primary" data-testid="test-todo-save-button">Save Changes</button>
+          </div>
+        </div>
+      </article>
+    </div>
+ <script src="script.js"></script>
+  </body>
+</html>
